@@ -1,10 +1,10 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import App from "../App"
-import { shallow } from "enzyme"
+import { shallow, mount, render as enzymeRender } from "enzyme"
 
 describe("App", () => {
   test("Smoke test App", () => {
-    shallow(<App />)
+    mount(<App />)
   })
 })
