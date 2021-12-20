@@ -2,6 +2,42 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## User stories
+
+### MVP
+
+Som användare vill jag se en lista på meetups rangordnade efter datum\
+så jag bara ser de kommande relevanta för mig.
+
+Som användare vill jag kunna anmäla mig till meetups\
+så jag vet att jag kommer få plats att delta.
+
+Som användare vill jag kunna kommentera olika meetups\
+för att kunna diskutera och ta del av andras upplevelser.
+
+### Nice to have
+
+Som en användare vill jag att passerade meetups ska markeras tydligt\
+så att jag inte försöker anmäla mig till något som redan har varit.
+
+Som användare vill jag kunna söka och filtrera på plats (även distans) och intresse\
+för att lättare hitta de meetups som passar mig.
+
+Som användare vill jag veta hur många platser som är kvar\
+så jag vet om jag måste skynda mig att boka.
+
+Som användare vill jag kunna avboka min plats\
+för att få eventuella pengar tillbaka och lämna plats åt andra.
+
+Som användare vill jag kunna lägga till egna meetups\
+så jag kan hitta likasinnade.
+
+Som användare vill jag kunna se en lista över mina egna meetups samt de jag signat upp på\
+för att få en överblick.
+
+Som användare vill jag kunna ratea meetups jag har varit på med skalan 1-5\
+för att ge feedback till arrangören.
+
 ## Available Scripts
 
 In the project directory, you can run:
