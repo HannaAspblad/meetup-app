@@ -1,9 +1,10 @@
 import { users, events } from "../db/database"
 
 export const getAllEvents = async () => {
-  throw new Error("not implemented yet")
+  return events
 }
 
 export const getEventById = async (id: string) => {
-  throw new Error("not implemented yet")
+  const meetupById = events.find((meetup) => meetup.id === id)
+  return meetupById
 }
