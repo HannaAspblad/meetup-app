@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import * as API from "../api/api"
 import EventCard from "../components/EventCard"
+import { Link } from "react-router-dom"
 
 export const eventsByDate = (events: any) => {
   const sortedEvents = events.sort((a: any, b: any) => b.time - a.time)
@@ -27,9 +28,9 @@ const Start = () => {
         {events.length > 0 ? (
           events.map((event: any) => (
             <div key={event.id} className="event-card">
-              {/* <Link to={`/event/${event.id}`}> */}
-              <EventCard event={event} />
-              {/* </Link> */}
+              <Link to={`/event/${event.id}`}>
+                <EventCard event={event} />
+              </Link>
             </div>
           ))
         ) : (

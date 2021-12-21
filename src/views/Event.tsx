@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import * as API from "../api/api"
 import EventCard from "../components/EventCard"
+import EventComments from "../components/EventComments"
 
 const Event = () => {
   const { id }: string | any = useParams()
@@ -19,10 +20,16 @@ const Event = () => {
   return (
     <div>
       <h2>Event</h2>
-
-      <div className="event-card">
-        <EventCard event={event} />
-      </div>
+      {event !== undefined && Object.keys(event).length > 0 && (
+        <>
+          <div className="event-card">
+            <EventCard event={event} />
+          </div>
+          <div className="event-comments">
+            <EventComments comments={event.comments} />
+          </div>
+        </>
+      )}
     </div>
   )
 }

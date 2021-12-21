@@ -6,9 +6,21 @@ import { shallow } from "enzyme"
 //Mock functions
 import { populatePage } from "../views/EventMock"
 
-describe("Start", () => {
-  test("Smoke test Event", () => {
+describe("Event view", () => {
+  test("Smoke test Event view", () => {
     shallow(<Event />)
+  })
+
+  test("Should render Event comments component", () => {
+    const wrapper = shallow(<Event />)
+    const comments = wrapper.find(".event-comments > EventComments")
+    expect(comments.length).not.toBe(0)
+  })
+
+  test("Should render Event card component", () => {
+    const wrapper = shallow(<Event />)
+    const comments = wrapper.find(".event-card > Card")
+    expect(comments.length).not.toBe(0)
   })
 })
 
