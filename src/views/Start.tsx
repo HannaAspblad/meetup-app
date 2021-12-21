@@ -2,6 +2,11 @@ import { useEffect, useState } from "react"
 import * as API from "../api/api"
 import EventCard from "../components/EventCard"
 
+export const eventsByDate = (events: any) => {
+  const sortedEvents = events.sort((a: any, b: any) => b.time - a.time)
+  return sortedEvents
+}
+
 const Start = () => {
   const [events, setEvents] = useState(Array)
 
@@ -13,6 +18,7 @@ const Start = () => {
     const result = await API.getAllEvents()
     setEvents(result)
   }
+
   return (
     <div>
       <h2>Start page</h2>

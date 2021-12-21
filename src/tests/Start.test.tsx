@@ -1,10 +1,27 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
-import Start from "../views/Start"
+import { render, screen, waitFor } from "@testing-library/react"
+import Start, { eventsByDate } from "../views/Start"
 import { shallow, mount, render as enzymeRender } from "enzyme"
 
 //mock functions
 import { populatePage } from "../views/StartMock"
+
+const dummyEvents = [
+  {
+    id: "event-test",
+    time: new Date("2011-11-10"),
+  },
+
+  {
+    id: "event-test-2",
+    time: new Date("2012-11-10"),
+  },
+
+  {
+    id: "event-test-3",
+    time: new Date("2009-11-10"),
+  },
+]
 
 describe("Start view", () => {
   test("Smoke test Start", () => {
@@ -26,13 +43,24 @@ describe("Start view", () => {
     expect(element.length).not.toBe(0)
   })
 })
-
-describe("Start view mock API calls", () => {
-  test("Should call getAllEvents", () => {
+describe("Start page event sorting", () => {
+  test("Should order events by date", () => {
+    const ordered = eventsByDate(dummyEvents)
+    expect(ordered[0].id).toBe("event-test-2")
+  })
+})
+describe("Start view mock functions", () => {
+  test("Should call getAllEvents and eventsByDate", () => {
     const getAllEventsMock = jest.fn()
-    const mockObject = { getAllEvents: getAllEventsMock }
+    const eventsByDateMock = jest.fn()
+    const mockObject = {
+      getAllEvents: getAllEventsMock,
+      eventsByDate: eventsByDateMock,
+    }
 
     populatePage(mockObject)
+
     expect(getAllEventsMock.mock.calls.length).toBe(1)
+    expect(eventsByDateMock.mock.calls.length).toBe(1)
   })
 })

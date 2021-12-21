@@ -1,18 +1,15 @@
-const EventCard = (props: any) => {
-  console.log(props.event)
+const EventCard = ({ event }: any) => {
   return (
     <div>
       <h3>eventcard</h3>
-
-      {props.length > 0 ? (
-        props.events.map((event: any) => (
-          <div key={event.id} className="event-card"></div>
-        ))
-      ) : (
-        <p className="error-message">No events</p>
+      {event !== undefined && (
+        <div>
+          <p>{event.title}</p>
+          <p>{event.location}</p>
+          <p>{`${event.time}`}</p>
+          {/* <p>{event.time.toLocaleDateString()}</p> */}
+        </div>
       )}
-
-      {/* <p>{props.event.title}</p> */}
     </div>
   )
 }
