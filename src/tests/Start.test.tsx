@@ -56,11 +56,13 @@ describe("Start view mock functions", () => {
     const mockObject = {
       getAllEvents: getAllEventsMock,
       eventsByDate: eventsByDateMock,
+      events: dummyEvents,
     }
 
     populatePage(mockObject)
 
     expect(getAllEventsMock.mock.calls.length).toBe(1)
     expect(eventsByDateMock.mock.calls.length).toBe(1)
+    expect(eventsByDateMock).toHaveBeenCalledWith(dummyEvents)
   })
 })
