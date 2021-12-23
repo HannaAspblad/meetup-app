@@ -94,24 +94,6 @@ export const events: EventsData[] = [
     title: "Even prettier ponies",
     location: "Stockholm",
     time: new Date("2008-05-13"),
-    comments: [
-      {
-        id: "comment-ghi",
-        authorId: "user-jkl",
-        comment: "loved to meet ponies",
-      },
-
-      {
-        id: "comment-jkl",
-        authorId: "user-abc",
-        comment: "i don't like horses",
-      },
-
-      {
-        id: "comment-mno",
-        authorId: "user-ghi",
-        comment: "i made new pony friends",
-      },
-    ],
+    comments: [],
   },
 ]

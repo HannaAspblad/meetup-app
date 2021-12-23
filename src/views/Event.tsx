@@ -19,17 +19,13 @@ const Event = () => {
 
   return (
     <div>
-      <h2>Event</h2>
-      {event !== undefined && Object.keys(event).length > 0 && (
-        <>
-          <div className="event-card">
-            <EventCard event={event} />
-          </div>
-          <div className="event-comments">
-            <EventComments comments={event.comments} />
-          </div>
-        </>
-      )}
+      <div className="event-card">
+        <EventCard event={event} />
+      </div>
+      <h4>Comments</h4>
+      <div className="event-comments">
+        <EventComments comments={event.comments} />
+      </div>
     </div>
   )
 }

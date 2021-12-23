@@ -18,12 +18,10 @@ describe("EventCard component", () => {
 
 test("Should render event information", () => {
   render(<EventCard event={dummyEvent} />)
-  //   console.log()
+
   expect(screen.getByText("Ugly cars lovers meetup")).toBeInTheDocument()
   expect(screen.getByText("Stockholm")).toBeInTheDocument()
-  expect(screen.getByText(`${dummyEvent.time}`)).toBeInTheDocument()
-
-  //   expect(
-  //     screen.getByText(`${dummyEvent.time.toLocaleDateString()}`)
-  //   ).toBeInTheDocument()
+  expect(
+    screen.getByText(`${dummyEvent.time.toLocaleDateString()}`)
+  ).toBeInTheDocument()
 })

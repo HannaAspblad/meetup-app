@@ -11,16 +11,16 @@ describe("Event view", () => {
     shallow(<Event />)
   })
 
-  test("Should render Event comments component", () => {
-    const wrapper = shallow(<Event />)
-    const comments = wrapper.find(".event-comments > EventComments")
-    expect(comments.length).not.toBe(0)
-  })
-
   test("Should render Event card component", () => {
     const wrapper = shallow(<Event />)
-    const comments = wrapper.find(".event-card > Card")
-    expect(comments.length).not.toBe(0)
+    const eventWrapper = wrapper.find(".event-comments > EventComments")
+    expect(eventWrapper.length).not.toBe(0)
+  })
+
+  test("Should render Event comments component", () => {
+    const wrapper = shallow(<Event />)
+    const eventWrapper = wrapper.find(".event-card > EventCard")
+    expect(eventWrapper.length).not.toBe(0)
   })
 })
 

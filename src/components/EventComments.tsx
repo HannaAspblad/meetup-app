@@ -1,9 +1,8 @@
 const EventComments = ({ comments }: any) => {
-  return (
-    <div>
-      <h3>comments</h3>
-
-      {comments !== undefined && (
+  console.log(typeof comments)
+  if (comments !== undefined && Object.keys(comments).length > 0) {
+    return (
+      <div>
         <div>
           {comments.map((comment: any) => {
             return (
@@ -14,9 +13,10 @@ const EventComments = ({ comments }: any) => {
             )
           })}
         </div>
-      )}
-    </div>
-  )
+      </div>
+    )
+  }
+  return <p>No comments</p>
 }
 
 export default EventComments

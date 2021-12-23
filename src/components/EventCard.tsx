@@ -1,13 +1,11 @@
 const EventCard = ({ event }: any) => {
   return (
     <div>
-      <h3>eventcard</h3>
-      {event !== undefined && (
+      {event !== undefined && Object.keys(event).length > 0 && (
         <div>
-          <p>{event.title}</p>
+          <h3>{event.title}</h3>
           <p>{event.location}</p>
-          <p>{`${event.time}`}</p>
-          {/* <p>{event.time.toLocaleDateString()}</p> */}
+          <p>{event.time.toLocaleDateString()}</p>
         </div>
       )}
     </div>
