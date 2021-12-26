@@ -9,6 +9,12 @@ export const getEventById = async (id: string) => {
   return meetupById
 }
 
-export const logIn = async () => {
-  throw new Error("not implemented yet")
+export const logIn = async (user: any) => {
+  const existingUser = users.find((u) => u.username === user.username)
+
+  if (existingUser && existingUser.password === user.password) {
+    return true
+  }
+
+  return false
 }
