@@ -27,8 +27,9 @@ const Start = () => {
         {events.length > 0 ? (
           events.map((event: any) => (
             <div key={event.id} className="event-card">
+              <EventCard event={event} />
               <Link to={`/event/${event.id}`}>
-                <EventCard event={event} />
+                <p>Meetup details</p>
               </Link>
             </div>
           ))

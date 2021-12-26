@@ -2,17 +2,26 @@ import React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { shallow, mount, render as enzymeRender } from "enzyme"
 import Login from "../views/Login"
+import { BrowserRouter as Router } from "react-router-dom"
 
 //mock functions
 import { submit } from "../views/LoginMock"
 
 describe("Login view", () => {
   test("Smoke test Login view", () => {
-    shallow(<Login />)
+    shallow(
+      <Router>
+        <Login />
+      </Router>
+    )
   })
 
   test("Should render input form", () => {
-    render(<Login />)
+    render(
+      <Router>
+        <Login />
+      </Router>
+    )
 
     const inputUserName = screen.getByRole("textbox", { name: "username" })
     // const inputPassword = screen.getByRole("textbox", { name: "password" })
@@ -30,7 +39,11 @@ describe("Login view", () => {
 
 describe("Login view API calls", () => {
   test("Should call logIn function", () => {
-    render(<Login />)
+    render(
+      <Router>
+        <Login />
+      </Router>
+    )
 
     const logInMock = jest.fn()
     const mockObject = { logIn: logInMock }
@@ -45,7 +58,11 @@ describe("Login view API calls", () => {
   })
 
   test("Should call logIn function with correct credentials", () => {
-    render(<Login />)
+    render(
+      <Router>
+        <Login />
+      </Router>
+    )
 
     const logInMock = jest.fn()
 

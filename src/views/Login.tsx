@@ -1,15 +1,17 @@
 import { useState } from "react"
 import * as API from "../api/api"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [username, setUsername] = useState(String)
   const [password, setPassword] = useState(String)
+  const navigate = useNavigate()
 
   const submit = async () => {
-    const valid = await API.logIn({ username: username, password: password })
-    if (valid) {
-      //redirect
-      console.log("valid")
+    const userId = await API.logIn({ username: username, password: password })
+    if (userId) {
+      navigate(`/user/${userId}`)
+      sessionStorage.setItem("User", userId)
     } else {
       //errormessage
       console.log("invalid")

@@ -24,7 +24,7 @@ const Event = () => {
       </div>
       <h4>Comments</h4>
       <div className="event-comments">
-        <EventComments comments={event.comments} />
+        <EventComments event={event} />
       </div>
     </div>
   )

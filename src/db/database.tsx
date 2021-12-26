@@ -2,6 +2,7 @@ interface UsersData {
   id: string
   username: string
   password: string
+  bookedEvents: BookedEvents[]
 }
 
 interface EventsData {
@@ -14,8 +15,11 @@ interface EventsData {
 
 interface CommentsData {
   id: string
-  authorId: string
+  authorId: any
   comment: string
+}
+interface BookedEvents {
+  id: string
 }
 
 export const users: UsersData[] = [
@@ -23,22 +27,26 @@ export const users: UsersData[] = [
     id: "user-abc",
     username: "hanna",
     password: "lösenord",
+    bookedEvents: [{ id: "event-abc" }, { id: "event-def" }],
   },
 
   {
     id: "user-def",
     username: "pontus",
     password: "lösenord",
+    bookedEvents: [{ id: "event-abc" }],
   },
   {
     id: "user-ghi",
     username: "lisa",
     password: "lösenord",
+    bookedEvents: [],
   },
   {
     id: "user-jkl",
     username: "joe",
     password: "lösenord",
+    bookedEvents: [],
   },
 ]
 

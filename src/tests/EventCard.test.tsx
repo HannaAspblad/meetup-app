@@ -3,16 +3,38 @@ import { render, screen } from "@testing-library/react"
 import EventCard from "../components/EventCard"
 import { shallow, mount, render as enzymeRender } from "enzyme"
 
+//Mock functions
+import { signUp } from "../components/EventCardMock"
+
 const dummyEvent = {
   id: "event-abc",
   title: "Ugly cars lovers meetup",
   location: "Stockholm",
   time: new Date("2011-11-10"),
+  comments: [
+    {
+      id: "comment-abc",
+      authorId: "user-jkl",
+      comment: "pretty boring meetup",
+    },
+
+    {
+      id: "comment-def",
+      authorId: "user-abc",
+      comment: "i agree",
+    },
+  ],
 }
 
 describe("EventCard component", () => {
   test("Smoke test Event card", () => {
     shallow(<EventCard />)
+  })
+
+  test("Should display booking button", () => {
+    render(<EventCard />)
+    const bookingButton = screen.getByRole("button", { name: "booking" })
+    expect(bookingButton).toBeInTheDocument()
   })
 })
 
@@ -24,4 +46,16 @@ test("Should render event information", () => {
   expect(
     screen.getByText(`${dummyEvent.time.toLocaleDateString()}`)
   ).toBeInTheDocument()
+})
+
+describe("Mock API calls", () => {
+  test("Should call signUpToEvent", () => {
+    render(<EventCard event={dummyEvent} />)
+    const signUpToEventMock = jest.fn()
+
+    const mockObject = { signUpToEvent: signUpToEventMock }
+
+    signUp(mockObject, "event-id", "user-id")
+    expect(signUpToEventMock.mock.calls.length).toBe(1)
+  })
 })
