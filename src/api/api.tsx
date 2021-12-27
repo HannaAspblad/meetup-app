@@ -38,16 +38,27 @@ export const addComment = async (comment: string, id: string) => {
 
 export const signUpToEvent = async (eventId: string, userId: any) => {
   const user = users.findIndex((user) => user.id === userId)
+  console.log(users[user].bookedEvents)
 
   users[user].bookedEvents.push({
     id: eventId,
   })
 
-  return
+  return users[user].bookedEvents
 }
 
 export const getUser = async (userId: any) => {
   const user = users.findIndex((user) => user.id === userId)
 
   return users[user]
+}
+export const getEventsByIds = async (eventIds: any) => {
+  const userEvents: any = []
+  for (let currentId of eventIds) {
+    userEvents.push(events.find((event) => event.id === currentId))
+  }
+
+  console.log(userEvents)
+
+  return userEvents
 }

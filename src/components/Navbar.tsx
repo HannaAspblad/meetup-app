@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 
 const Navbar = () => {
   const [user, setUser] = useState(sessionStorage.getItem("User"))
+
   return (
     <div className="navbar-wrapper">
       <Link to="/">Start</Link>
