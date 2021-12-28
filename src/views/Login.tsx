@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 const Login = () => {
   const [username, setUsername] = useState(String)
   const [password, setPassword] = useState(String)
+  const [invalid, setInvalid] = useState(Boolean)
   const navigate = useNavigate()
 
   const submit = async () => {
@@ -12,9 +13,10 @@ const Login = () => {
     if (userId) {
       navigate(`/user/${userId}`)
       sessionStorage.setItem("User", userId)
+      setInvalid(false)
     } else {
       //errormessage
-      console.log("invalid")
+      setInvalid(true)
     }
   }
 
@@ -41,6 +43,7 @@ const Login = () => {
           Log in
         </button>
       </form>
+      {invalid ? <p>Error</p> : ""}
     </div>
   )
 }

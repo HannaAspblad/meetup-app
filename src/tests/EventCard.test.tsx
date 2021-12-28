@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import EventCard from "../components/EventCard"
-import { shallow, mount, render as enzymeRender } from "enzyme"
+import { shallow } from "enzyme"
 
 //Mock functions
 import { signUp } from "../components/EventCardMock"
@@ -31,7 +31,7 @@ describe("EventCard component", () => {
     shallow(<EventCard />)
   })
 
-  test("Should display booking button", () => {
+  test("Should display sign up button", () => {
     render(<EventCard />)
     const bookingButton = screen.getByRole("button", { name: "booking" })
     expect(bookingButton).toBeInTheDocument()

@@ -1,6 +1,6 @@
 import React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
-import { shallow, mount, render as enzymeRender } from "enzyme"
+import { shallow } from "enzyme"
 import Login from "../views/Login"
 import { BrowserRouter as Router } from "react-router-dom"
 
@@ -24,7 +24,7 @@ describe("Login view", () => {
     )
 
     const inputUserName = screen.getByRole("textbox", { name: "username" })
-    // const inputPassword = screen.getByRole("textbox", { name: "password" })
+
     const inputPassword = screen.getByLabelText("password")
 
     const submitButton = screen.getByRole("button", {

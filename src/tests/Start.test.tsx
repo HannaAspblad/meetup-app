@@ -1,7 +1,7 @@
 import React from "react"
-import { render, screen, waitFor } from "@testing-library/react"
+
 import Start, { eventsByDate } from "../views/Start"
-import { shallow, mount, render as enzymeRender } from "enzyme"
+import { shallow } from "enzyme"
 
 //mock functions
 import { populatePage } from "../views/StartMock"

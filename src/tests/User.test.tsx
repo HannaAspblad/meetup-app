@@ -1,5 +1,5 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+
 import User from "../views/User"
 import { shallow } from "enzyme"
 
@@ -18,12 +18,6 @@ describe("User view", () => {
     shallow(<User />)
   })
 })
-
-// describe("User view data", () => {
-//   test("Should not be signed up for same event twice", () => {
-//     shallow(<User />)
-//   })
-// })
 
 describe("User view mock functions", () => {
   test("Should call getUser", () => {

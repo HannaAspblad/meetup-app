@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 const Navbar = () => {
@@ -7,6 +7,7 @@ const Navbar = () => {
   return (
     <div className="navbar-wrapper">
       <Link to="/">Start</Link>
+
       <Link to="/login">Log in</Link>
       <Link to={`/user/${user}`}>User</Link>
     </div>
