@@ -1,11 +1,25 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import * as API from "../api/api"
 
 const EventComments = ({ event }: any) => {
+  const [user, setUser] = useState(sessionStorage.getItem("User"))
   const [comment, setComment] = useState(String)
+  const [disabled, setDisabled] = useState(false)
+  const [allComments, setAllComments] = useState(Object)
+
+  useEffect(() => {
+    if (!user) {
+      setDisabled(true)
+    }
+  }, [user])
+
+  useEffect(() => {
+    setAllComments(comment)
+  }, [comment])
 
   const submit = async () => {
-    await API.addComment(comment, event.id)
+    await API.addComment(comment, event.id, user)
+    setAllComments(event.comments)
   }
 
   if (event === undefined) return null
@@ -33,7 +47,7 @@ const EventComments = ({ event }: any) => {
           setComment(e.target.value)
         }}
       />
-      <button aria-label="submit" onClick={submit}>
+      <button aria-label="submit" onClick={submit} disabled={disabled}>
         Add comment
       </button>
     </div>

@@ -6,10 +6,8 @@ const Navbar = () => {
 
   return (
     <div className="navbar-wrapper">
-      <Link to="/">Start</Link>
-
-      <Link to="/login">Log in</Link>
-      <Link to={`/user/${user}`}>User</Link>
+      <Link to="/">All meetups</Link>
+      <Link to={`/user/${user}`}>Your page</Link>
     </div>
   )
 }

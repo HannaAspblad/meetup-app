@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import EventCard from "../components/EventCard"
-import { shallow } from "enzyme"
+import { shallow, mount } from "enzyme"
 
 //Mock functions
 import { signUp } from "../components/EventCardMock"
@@ -32,14 +32,14 @@ describe("EventCard component", () => {
   })
 
   test("Should display sign up button", () => {
-    render(<EventCard />)
+    shallow(<EventCard />)
     const bookingButton = screen.getByRole("button", { name: "booking" })
     expect(bookingButton).toBeInTheDocument()
   })
 })
 
 test("Should render event information", () => {
-  render(<EventCard event={dummyEvent} />)
+  shallow(<EventCard event={dummyEvent} />)
 
   expect(screen.getByText("Ugly cars lovers meetup")).toBeInTheDocument()
   expect(screen.getByText("Stockholm")).toBeInTheDocument()
@@ -50,7 +50,7 @@ test("Should render event information", () => {
 
 describe("Mock API calls", () => {
   test("Should call signUpToEvent", () => {
-    render(<EventCard event={dummyEvent} />)
+    shallow(<EventCard event={dummyEvent} />)
     const signUpToEventMock = jest.fn()
 
     const mockObject = { signUpToEvent: signUpToEventMock }

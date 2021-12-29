@@ -20,20 +20,18 @@ export const logIn = async (user: any) => {
   return false
 }
 
-export const addComment = async (comment: string, id: string) => {
-  const user = sessionStorage.getItem("User")
-
-  const event = events.findIndex((event) => event.id === id)
-
-  if (event && event !== undefined) {
-    events[event].comments.push({
-      id: uuidv4(),
-      authorId: user,
-      comment: comment,
-    })
-
-    return events[event].comments
-  }
+export const addComment = async (
+  comment: string,
+  eventId: string,
+  userId: any
+) => {
+  const event = events.findIndex((event) => event.id === eventId)
+  events[event].comments.push({
+    id: uuidv4(),
+    authorId: userId,
+    comment: comment,
+  })
+  // return events[event].comments
 }
 
 export const signUpToEvent = async (eventId: string, userId: any) => {

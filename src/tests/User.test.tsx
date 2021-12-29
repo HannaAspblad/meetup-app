@@ -2,6 +2,7 @@ import React from "react"
 
 import User from "../views/User"
 import { shallow } from "enzyme"
+import { BrowserRouter as Router } from "react-router-dom"
 
 //mock functions
 import { getUser, getEvents } from "../views/UserMock"
@@ -15,7 +16,11 @@ const dummyUser = {
 
 describe("User view", () => {
   test("Smoke test User view", () => {
-    shallow(<User />)
+    shallow(
+      <Router>
+        <User />
+      </Router>
+    )
   })
 })
 

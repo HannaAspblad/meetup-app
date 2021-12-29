@@ -15,7 +15,6 @@ const Login = () => {
       sessionStorage.setItem("User", userId)
       setInvalid(false)
     } else {
-      //errormessage
       setInvalid(true)
     }
   }

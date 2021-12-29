@@ -3,7 +3,7 @@ import * as API from "../api/api"
 
 const EventCard = ({ event }: any) => {
   const [user, setUser] = useState(sessionStorage.getItem("User"))
-  const [booked, setBooked] = useState(false)
+  const [disabled, setDisabled] = useState(false)
 
   useEffect(() => {
     checkBookedEvents()
@@ -11,16 +11,19 @@ const EventCard = ({ event }: any) => {
 
   const checkBookedEvents = async () => {
     const userInfo = await API.getUser(user)
-
-    for (let currentEvent of userInfo.bookedEvents) {
-      if (currentEvent.id === event.id) {
-        setBooked(true)
+    if (!userInfo) {
+      setDisabled(true)
+    } else {
+      for (let currentEvent of userInfo.bookedEvents) {
+        if (currentEvent.id === event.id) {
+          setDisabled(true)
+        }
       }
     }
   }
 
   const signUp = async () => {
-    setBooked(true)
+    setDisabled(true)
     await API.signUpToEvent(event.id, user)
   }
   return (
@@ -32,8 +35,7 @@ const EventCard = ({ event }: any) => {
           <p>{event.time.toLocaleDateString()}</p>
         </div>
       )}
-
-      <button aria-label="booking" onClick={signUp} disabled={booked}>
+      <button aria-label="booking" onClick={signUp} disabled={disabled}>
         Sign up
       </button>
     </div>
