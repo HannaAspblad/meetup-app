@@ -2,11 +2,8 @@ import { useEffect, useState } from "react"
 import * as API from "../api/api"
 import EventCard from "../components/EventCard"
 import { Link } from "react-router-dom"
+import { eventsByDate } from "../utils/utils"
 
-export const eventsByDate = (events: any) => {
-  const sortedEvents = events.sort((a: any, b: any) => b.time - a.time)
-  return sortedEvents
-}
 const Start = () => {
   const [events, setEvents] = useState(Array)
 
@@ -16,6 +13,7 @@ const Start = () => {
 
   const populatePage = async () => {
     const result = await API.getAllEvents()
+    eventsByDate(result)
     setEvents(result)
   }
 

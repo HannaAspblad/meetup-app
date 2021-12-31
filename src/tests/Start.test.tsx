@@ -1,6 +1,7 @@
 import React from "react"
 
-import Start, { eventsByDate } from "../views/Start"
+import Start from "../views/Start"
+
 import { shallow } from "enzyme"
 
 //mock functions
@@ -8,18 +9,28 @@ import { populatePage } from "../views/StartMock"
 
 const dummyEvents = [
   {
-    id: "event-test",
-    time: new Date("2011-11-10"),
-  },
-
-  {
-    id: "event-test-2",
+    id: "event-test-1",
     time: new Date("2012-11-10"),
   },
 
   {
+    id: "event-test-2",
+    time: new Date("2033-11-10"),
+  },
+
+  {
     id: "event-test-3",
-    time: new Date("2009-11-10"),
+    time: new Date("2011-11-10"),
+  },
+
+  {
+    id: "event-test-4",
+    time: new Date("2260-11-10"),
+  },
+
+  {
+    id: "event-test-5",
+    time: new Date("2322-11-10"),
   },
 ]
 
@@ -43,12 +54,7 @@ describe("Start view", () => {
     expect(element.length).not.toBe(0)
   })
 })
-describe("Start page event sorting", () => {
-  test("Should order events by date", () => {
-    const ordered = eventsByDate(dummyEvents)
-    expect(ordered[0].id).toBe("event-test-2")
-  })
-})
+
 describe("Start view mock functions", () => {
   test("Should call getAllEvents and eventsByDate", () => {
     const getAllEventsMock = jest.fn()

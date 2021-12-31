@@ -11,7 +11,11 @@ const dummyUser = {
   id: "user-abc",
   username: "hanna",
   password: "lösenord",
-  bookedEvents: [{ id: "event-abc" }, { id: "event-def" }],
+  time: new Date("2012-11-10"),
+  bookedEvents: [
+    { id: "event-abc", time: new Date("2001-11-10") },
+    { id: "event-def", time: new Date("2322-11-10") },
+  ],
 }
 
 describe("User view", () => {
@@ -39,20 +43,24 @@ describe("User view mock functions", () => {
     expect(getUserMock).toHaveBeenCalledWith("user-abc")
   })
 
-  test("Should call getEventsByIds", () => {
+  test("Should call getEvents", () => {
     const getEventsMock = jest.fn()
+    const eventsByDateMock = jest.fn()
 
     const mockObject = {
       getEventsByIds: getEventsMock,
+      eventsByDate: eventsByDateMock,
     }
-    const events: any = []
+    const eventIds: any = []
+
     dummyUser.bookedEvents.forEach((event) => {
-      events.push(event.id)
+      eventIds.push(event.id)
     })
 
-    getEvents(mockObject, events)
+    getEvents(mockObject, eventIds, dummyUser.bookedEvents)
 
     expect(getEventsMock.mock.calls.length).toBe(1)
+    expect(eventsByDateMock.mock.calls.length).toBe(1)
 
     expect(getEventsMock).toHaveBeenCalledWith(["event-abc", "event-def"])
   })

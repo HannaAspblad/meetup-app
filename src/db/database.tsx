@@ -55,7 +55,7 @@ export const events: EventsData[] = [
     id: "event-abc",
     title: "Ugly cars lovers meetup",
     location: "Stockholm",
-    time: new Date("2011-11-10"),
+    time: new Date("2022-11-10"),
     comments: [
       {
         id: "comment-abc",
@@ -75,7 +75,7 @@ export const events: EventsData[] = [
     id: "event-def",
     title: "Prettiest ponies",
     location: "Stockholm",
-    time: new Date("2023-05-13"),
+    time: new Date("2022-05-13"),
     comments: [
       {
         id: "comment-ghi",
@@ -101,7 +101,7 @@ export const events: EventsData[] = [
     id: "event-ghi",
     title: "Even prettier ponies",
     location: "Stockholm",
-    time: new Date("2008-05-13"),
+    time: new Date("2022-07-13"),
     comments: [],
   },
 ]

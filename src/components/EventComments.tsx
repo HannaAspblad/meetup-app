@@ -8,7 +8,7 @@ const EventComments = ({ event }: any) => {
   const [allComments, setAllComments] = useState(Object)
 
   useEffect(() => {
-    if (!user) {
+    if (user === null) {
       setDisabled(true)
     }
   }, [user])
@@ -22,10 +22,10 @@ const EventComments = ({ event }: any) => {
     setAllComments(event.comments)
   }
 
-  if (event === undefined) return null
   return (
     <div>
-      {event.comments !== undefined &&
+      {event !== undefined &&
+      event.comments !== undefined &&
       Object.keys(event.comments).length > 0 ? (
         <div>
           {event.comments.map((comment: any) => {

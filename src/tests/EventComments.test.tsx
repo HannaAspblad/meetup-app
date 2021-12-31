@@ -36,7 +36,7 @@ describe("Event comments component", () => {
   })
 
   test("Should render input field and submit button to add new comment", () => {
-    render(<EventComments event={dummyEvent} />)
+    render(<EventComments />)
 
     const inputComment = screen.getByRole("textbox", { name: "comment" })
     const submitButton = screen.getByRole("button", {
@@ -46,20 +46,30 @@ describe("Event comments component", () => {
     expect(inputComment).toBeInTheDocument()
     expect(submitButton).toBeInTheDocument()
   })
+
+  // test("Should clear input field after submitting a comment", () => {
+  //   render(<EventComments />)
+
+  //   const inputField = screen.getByRole("textbox", { name: "comment" })
+  //   const submitButton = screen.getByRole("button", {
+  //     name: "submit",
+  //   })
+
+  //   fireEvent.change(inputField, { target: { value: "amazing meetup" } })
+  //   const comment = (inputField as HTMLInputElement).value
+  //   fireEvent.click(submitButton)
+  //   expect(comment).toBe("")
+  // })
 })
 
 describe("Mock API calls", () => {
   test("Should call addComments with correct text", () => {
     render(<EventComments event={dummyEvent} />)
     const addCommentMock = jest.fn()
-
     const inputComment = screen.getByRole("textbox", { name: "comment" })
-
     fireEvent.change(inputComment, { target: { value: "amazing meetup" } })
     const comment = (inputComment as HTMLInputElement).value
-
     const mockObject = { addComment: addCommentMock }
-
     submit(mockObject, comment, "id")
     expect(addCommentMock.mock.calls.length).toBe(1)
     expect(addCommentMock).toHaveBeenCalledWith("amazing meetup", "id")

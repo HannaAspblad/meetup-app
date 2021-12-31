@@ -5,6 +5,7 @@ import { shallow, mount } from "enzyme"
 
 //Mock functions
 import { signUp } from "../components/EventCardMock"
+import { act } from "react-dom/test-utils"
 
 const dummyEvent = {
   id: "event-abc",
@@ -32,14 +33,15 @@ describe("EventCard component", () => {
   })
 
   test("Should display sign up button", () => {
-    shallow(<EventCard />)
+    render(<EventCard />)
+
     const bookingButton = screen.getByRole("button", { name: "booking" })
     expect(bookingButton).toBeInTheDocument()
   })
 })
 
 test("Should render event information", () => {
-  shallow(<EventCard event={dummyEvent} />)
+  render(<EventCard event={dummyEvent} />)
 
   expect(screen.getByText("Ugly cars lovers meetup")).toBeInTheDocument()
   expect(screen.getByText("Stockholm")).toBeInTheDocument()

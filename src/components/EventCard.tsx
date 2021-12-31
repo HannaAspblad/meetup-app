@@ -6,18 +6,19 @@ const EventCard = ({ event }: any) => {
   const [disabled, setDisabled] = useState(false)
 
   useEffect(() => {
-    checkBookedEvents()
-  })
+    if (user !== null || user !== undefined) {
+      setDisabled(true)
+    } else {
+      checkBookedEvents()
+    }
+  }, [user])
 
   const checkBookedEvents = async () => {
     const userInfo = await API.getUser(user)
-    if (!userInfo) {
-      setDisabled(true)
-    } else {
-      for (let currentEvent of userInfo.bookedEvents) {
-        if (currentEvent.id === event.id) {
-          setDisabled(true)
-        }
+
+    for (let currentEvent of userInfo.bookedEvents) {
+      if (currentEvent.id === event.id) {
+        setDisabled(true)
       }
     }
   }

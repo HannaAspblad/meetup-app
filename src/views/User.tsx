@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import Login from "./Login"
 import { Link } from "react-router-dom"
 import * as API from "../api/api"
+import { eventsByDate } from "../utils/utils"
 
 const User = () => {
   const navigate = useNavigate()
@@ -17,9 +18,10 @@ const User = () => {
 
   const getUser = async () => {
     const currentUser = await API.getUser(id)
-
-    setUser(currentUser)
-    getUserEvents()
+    if (currentUser) {
+      setUser(currentUser)
+      getUserEvents()
+    }
   }
 
   const logOut = () => {
@@ -36,6 +38,7 @@ const User = () => {
       })
 
       const userEvents = await API.getEventsByIds(eventIds)
+      eventsByDate(userEvents)
       setEvents(userEvents)
     } else setEvents([])
   }
