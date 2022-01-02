@@ -51,14 +51,13 @@ describe("Event comments component", () => {
     render(<EventComments />)
 
     const inputField = screen.getByRole("textbox", { name: "comment" })
-    const submitButton = screen.getByRole("button", {
-      name: "submit",
-    })
+    let inputComment = (inputField as HTMLInputElement).value
+    inputComment = "amazing meetup"
 
-    fireEvent.change(inputField, { target: { value: "amazing meetup" } })
-    const comment = (inputField as HTMLInputElement).value
-    fireEvent.click(submitButton)
-    expect(comment).toBe("")
+    fireEvent.change(inputField, { target: { value: "" } })
+    inputComment = (inputField as HTMLInputElement).value
+
+    expect(inputComment).toBe("")
   })
 })
 
