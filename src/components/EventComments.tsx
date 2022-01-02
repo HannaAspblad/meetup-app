@@ -4,22 +4,30 @@ import * as API from "../api/api"
 const EventComments = ({ event }: any) => {
   const [user, setUser] = useState(sessionStorage.getItem("User"))
   const [comment, setComment] = useState(String)
-  const [disabled, setDisabled] = useState(false)
-  const [allComments, setAllComments] = useState(Object)
+  const [submitDisabled, setSubmitDisabled] = useState(true)
+  const [commentingDisabled, setCommentingDisabled] = useState(false)
 
   useEffect(() => {
     if (user === null) {
-      setDisabled(true)
+      setCommentingDisabled(true)
     }
   }, [user])
 
-  useEffect(() => {
-    setAllComments(comment)
-  }, [comment])
-
   const submit = async () => {
     await API.addComment(comment, event.id, user)
-    setAllComments(event.comments)
+
+    setComment("")
+    setSubmitDisabled(true)
+  }
+
+  const handleEventTarget = async (e: any) => {
+    if (e.target.value.length < 1) {
+      setComment("")
+      setSubmitDisabled(true)
+    } else {
+      setComment(e.target.value)
+      setSubmitDisabled(false)
+    }
   }
 
   return (
@@ -41,13 +49,15 @@ const EventComments = ({ event }: any) => {
         <p>No comments</p>
       )}
       <input
+        disabled={commentingDisabled}
         aria-label="comment"
+        value={comment}
         type="text"
         onChange={(e) => {
-          setComment(e.target.value)
+          handleEventTarget(e)
         }}
       />
-      <button aria-label="submit" onClick={submit} disabled={disabled}>
+      <button aria-label="submit" onClick={submit} disabled={submitDisabled}>
         Add comment
       </button>
     </div>

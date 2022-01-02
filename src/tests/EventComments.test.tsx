@@ -47,19 +47,19 @@ describe("Event comments component", () => {
     expect(submitButton).toBeInTheDocument()
   })
 
-  // test("Should clear input field after submitting a comment", () => {
-  //   render(<EventComments />)
+  test("Should clear input field after submitting a comment", () => {
+    render(<EventComments />)
 
-  //   const inputField = screen.getByRole("textbox", { name: "comment" })
-  //   const submitButton = screen.getByRole("button", {
-  //     name: "submit",
-  //   })
+    const inputField = screen.getByRole("textbox", { name: "comment" })
+    const submitButton = screen.getByRole("button", {
+      name: "submit",
+    })
 
-  //   fireEvent.change(inputField, { target: { value: "amazing meetup" } })
-  //   const comment = (inputField as HTMLInputElement).value
-  //   fireEvent.click(submitButton)
-  //   expect(comment).toBe("")
-  // })
+    fireEvent.change(inputField, { target: { value: "amazing meetup" } })
+    const comment = (inputField as HTMLInputElement).value
+    fireEvent.click(submitButton)
+    expect(comment).toBe("")
+  })
 })
 
 describe("Mock API calls", () => {
