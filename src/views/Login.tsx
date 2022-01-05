@@ -23,7 +23,7 @@ const Login = () => {
     <div>
       <h2>Log in</h2>
       <div className="page-wrapper">
-        <form className="comments-form">
+        <form className="input-form">
           <label htmlFor="input-username">Username:</label>
           <input
             name="input-username"
@@ -42,7 +42,7 @@ const Login = () => {
               setPassword(e.target.value)
             }}
           />
-          <button aria-label="submit" onClick={submit}>
+          <button className="form-button" aria-label="submit" onClick={submit}>
             Log in
           </button>
         </form>

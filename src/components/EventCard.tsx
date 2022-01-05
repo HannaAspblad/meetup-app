@@ -55,12 +55,11 @@ const EventCard = ({ event }: any) => {
       <button aria-label="booking" onClick={signUp} disabled={disabled}>
         Sign up
       </button>
-      {(event !== undefined && passedEvent(event.time)) ||
-        (event !== undefined && !route.pathname.includes("/event") && (
-          <Link to={`/event/${event.id}`}>
-            <p>Meetup details</p>
-          </Link>
-        ))}
+      {event !== undefined && !route.pathname.includes("/event") && (
+        <Link to={`/event/${event.id}`}>
+          <p>Meetup details</p>
+        </Link>
+      )}
     </div>
   )
 }

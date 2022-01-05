@@ -49,7 +49,7 @@ const EventComments = ({ event }: any) => {
         <p>No comments</p>
       )}
 
-      <form className="comments-form">
+      <form className="input-form">
         <textarea
           disabled={commentingDisabled}
           aria-label="comment"
@@ -58,7 +58,12 @@ const EventComments = ({ event }: any) => {
             handleEventTarget(e)
           }}
         />
-        <button aria-label="submit" onClick={submit} disabled={submitDisabled}>
+        <button
+          className="form-button"
+          aria-label="submit"
+          onClick={submit}
+          disabled={submitDisabled}
+        >
           Add comment
         </button>
       </form>

@@ -17,14 +17,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Start />} />
-        </Routes>
-        <Routes>
           <Route path="/login" element={<Login />} />
-        </Routes>
-        <Routes>
           <Route path="/user/:id" element={<User />} />
-        </Routes>
-        <Routes>
           <Route path="/event/:id" element={<Event />} />
         </Routes>
       </Router>
