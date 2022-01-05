@@ -19,7 +19,7 @@ describe("Event view", () => {
 
   test("Should render Event comments component", () => {
     const wrapper = shallow(<Event />)
-    const eventWrapper = wrapper.find(".event-card > EventCard")
+    const eventWrapper = wrapper.find(".page-wrapper >div > EventCard")
     expect(eventWrapper.length).not.toBe(0)
   })
 })

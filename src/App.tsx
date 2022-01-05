@@ -14,6 +14,7 @@ function App() {
       <Router>
         <Header />
         <Navbar />
+
         <Routes>
           <Route path="/" element={<Start />} />
         </Routes>

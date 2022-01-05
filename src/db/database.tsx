@@ -26,26 +26,26 @@ export const users: UsersData[] = [
   {
     id: "user-abc",
     username: "hanna",
-    password: "lösenord",
+    password: "password",
     bookedEvents: [{ id: "event-abc" }, { id: "event-def" }],
   },
 
   {
     id: "user-def",
     username: "pontus",
-    password: "lösenord",
+    password: "password",
     bookedEvents: [{ id: "event-abc" }],
   },
   {
     id: "user-ghi",
     username: "lisa",
-    password: "lösenord",
+    password: "password",
     bookedEvents: [],
   },
   {
     id: "user-jkl",
     username: "joe",
-    password: "lösenord",
+    password: "password",
     bookedEvents: [],
   },
 ]
@@ -103,5 +103,53 @@ export const events: EventsData[] = [
     location: "Stockholm",
     time: new Date("2022-07-13"),
     comments: [],
+  },
+
+  {
+    id: "event-jkl",
+    title: "Tennis world wide",
+    location: "Borås",
+    time: new Date("2022-01-03"),
+    comments: [],
+  },
+
+  {
+    id: "event-mno",
+    title: "Furniture friends",
+    location: "Malmö",
+    time: new Date("2021-07-11"),
+    comments: [
+      {
+        id: "comment-abc",
+        authorId: "user-jkl",
+        comment: "pretty boring meetup",
+      },
+
+      {
+        id: "comment-def",
+        authorId: "user-abc",
+        comment: "i agree",
+      },
+    ],
+  },
+
+  {
+    id: "event-pqr",
+    title: "Cosplay nerds",
+    location: "Linköping",
+    time: new Date("2021-09-30"),
+    comments: [
+      {
+        id: "comment-abc",
+        authorId: "user-jkl",
+        comment: "pretty boring meetup",
+      },
+
+      {
+        id: "comment-def",
+        authorId: "user-abc",
+        comment: "i agree",
+      },
+    ],
   },
 ]

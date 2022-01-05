@@ -38,7 +38,7 @@ const EventComments = ({ event }: any) => {
         <div>
           {event.comments.map((comment: any) => {
             return (
-              <ul key={comment.id}>
+              <ul className="comments" key={comment.id}>
                 <li>{comment.authorId} commented</li>
                 <li>{comment.comment}</li>
               </ul>
@@ -48,18 +48,20 @@ const EventComments = ({ event }: any) => {
       ) : (
         <p>No comments</p>
       )}
-      <input
-        disabled={commentingDisabled}
-        aria-label="comment"
-        value={comment}
-        type="text"
-        onChange={(e) => {
-          handleEventTarget(e)
-        }}
-      />
-      <button aria-label="submit" onClick={submit} disabled={submitDisabled}>
-        Add comment
-      </button>
+
+      <form className="comments-form">
+        <textarea
+          disabled={commentingDisabled}
+          aria-label="comment"
+          value={comment}
+          onChange={(e) => {
+            handleEventTarget(e)
+          }}
+        />
+        <button aria-label="submit" onClick={submit} disabled={submitDisabled}>
+          Add comment
+        </button>
+      </form>
     </div>
   )
 }

@@ -14,17 +14,21 @@ const Event = () => {
 
   const populatePage = async () => {
     const result = await API.getEventById(id)
+
     setEvent(result)
   }
 
   return (
     <div>
-      <div className="event-card">
-        <EventCard event={event} />
-      </div>
-      <h4>Comments</h4>
-      <div className="event-comments">
-        <EventComments event={event} />
+      <h2>Meetup details</h2>
+      <div className="page-wrapper">
+        <div>
+          <EventCard event={event} />
+        </div>
+        <div className="event-comments">
+          <h3>Comments</h3>
+          <EventComments event={event} />
+        </div>
       </div>
     </div>
   )

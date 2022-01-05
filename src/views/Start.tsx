@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import * as API from "../api/api"
 import EventCard from "../components/EventCard"
-import { Link } from "react-router-dom"
+
 import { eventsByDate } from "../utils/utils"
 
 const Start = () => {
@@ -19,16 +19,16 @@ const Start = () => {
 
   return (
     <div>
-      <h2>Start page</h2>
+      <h2>All meetups</h2>
 
       <div className="event-grid">
         {events.length > 0 ? (
           events.map((event: any) => (
-            <div key={event.id} className="event-card">
+            <div key={event.id}>
               <EventCard event={event} />
-              <Link to={`/event/${event.id}`}>
+              {/* <Link to={`/event/${event.id}`}>
                 <p>Meetup details</p>
-              </Link>
+              </Link> */}
             </div>
           ))
         ) : (

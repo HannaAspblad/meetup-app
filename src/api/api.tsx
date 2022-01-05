@@ -31,7 +31,6 @@ export const addComment = async (
     authorId: userId,
     comment: comment,
   })
-  // return events[event].comments
 }
 
 export const signUpToEvent = async (eventId: string, userId: any) => {

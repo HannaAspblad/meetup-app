@@ -21,28 +21,33 @@ const Login = () => {
 
   return (
     <div>
-      <h1>login</h1>
-
-      <form>
-        <input
-          aria-label="username"
-          type="text"
-          onChange={(e) => {
-            setUsername(e.target.value)
-          }}
-        />
-        <input
-          aria-label="password"
-          type="password"
-          onChange={(e) => {
-            setPassword(e.target.value)
-          }}
-        />
-        <button aria-label="submit" onClick={submit}>
-          Log in
-        </button>
-      </form>
-      {invalid ? <p>Error</p> : ""}
+      <h2>Log in</h2>
+      <div className="page-wrapper">
+        <form className="comments-form">
+          <label htmlFor="input-username">Username:</label>
+          <input
+            name="input-username"
+            aria-label="username"
+            type="text"
+            onChange={(e) => {
+              setUsername(e.target.value)
+            }}
+          />
+          <label htmlFor="input-password">Password:</label>
+          <input
+            name="input-password"
+            aria-label="password"
+            type="password"
+            onChange={(e) => {
+              setPassword(e.target.value)
+            }}
+          />
+          <button aria-label="submit" onClick={submit}>
+            Log in
+          </button>
+        </form>
+        {invalid ? <p className="error-message">Error</p> : ""}
+      </div>
     </div>
   )
 }

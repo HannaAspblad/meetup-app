@@ -56,8 +56,8 @@ const User = () => {
   }
   return (
     <div>
-      <h3>welcome {user.username}</h3>
-      <p>List of your upcoming events</p>
+      <h2>Welcome {user.username}</h2>
+      <p>List of your events</p>
       <div>
         {events.length > 0 ? (
           events.map((event: any) => (

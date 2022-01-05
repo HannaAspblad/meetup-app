@@ -1,11 +1,11 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 import EventCard from "../components/EventCard"
-import { shallow, mount } from "enzyme"
+import { shallow } from "enzyme"
+import { BrowserRouter as Router } from "react-router-dom"
 
 //Mock functions
 import { signUp } from "../components/EventCardMock"
-import { act } from "react-dom/test-utils"
 
 const dummyEvent = {
   id: "event-abc",
@@ -29,11 +29,19 @@ const dummyEvent = {
 
 describe("EventCard component", () => {
   test("Smoke test Event card", () => {
-    shallow(<EventCard />)
+    shallow(
+      <Router>
+        <EventCard />
+      </Router>
+    )
   })
 
   test("Should display sign up button", () => {
-    render(<EventCard />)
+    render(
+      <Router>
+        <EventCard />
+      </Router>
+    )
 
     const bookingButton = screen.getByRole("button", { name: "booking" })
     expect(bookingButton).toBeInTheDocument()
@@ -41,7 +49,11 @@ describe("EventCard component", () => {
 })
 
 test("Should render event information", () => {
-  render(<EventCard event={dummyEvent} />)
+  render(
+    <Router>
+      <EventCard event={dummyEvent} />
+    </Router>
+  )
 
   expect(screen.getByText("Ugly cars lovers meetup")).toBeInTheDocument()
   expect(screen.getByText("Stockholm")).toBeInTheDocument()
@@ -52,7 +64,11 @@ test("Should render event information", () => {
 
 describe("Mock API calls", () => {
   test("Should call signUpToEvent", () => {
-    shallow(<EventCard event={dummyEvent} />)
+    shallow(
+      <Router>
+        <EventCard event={dummyEvent} />
+      </Router>
+    )
     const signUpToEventMock = jest.fn()
 
     const mockObject = { signUpToEvent: signUpToEventMock }
