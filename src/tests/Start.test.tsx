@@ -4,35 +4,11 @@ import Start from "../views/Start"
 
 import { shallow } from "enzyme"
 
-//mock functions
-import { populatePage } from "../views/StartMock"
+import { render } from "@testing-library/react"
+import { BrowserRouter as Router } from "react-router-dom"
+import { getAllEvents } from "../api/api"
 
-const dummyEvents = [
-  {
-    id: "event-test-1",
-    time: new Date("2012-11-10"),
-  },
-
-  {
-    id: "event-test-2",
-    time: new Date("2033-11-10"),
-  },
-
-  {
-    id: "event-test-3",
-    time: new Date("2011-11-10"),
-  },
-
-  {
-    id: "event-test-4",
-    time: new Date("2260-11-10"),
-  },
-
-  {
-    id: "event-test-5",
-    time: new Date("2322-11-10"),
-  },
-]
+jest.mock("../api/api")
 
 describe("Start view", () => {
   test("Smoke test Start", () => {
@@ -56,19 +32,13 @@ describe("Start view", () => {
 })
 
 describe("Start view mock functions", () => {
-  test("Should call getAllEvents and eventsByDate", () => {
-    const getAllEventsMock = jest.fn()
-    const eventsByDateMock = jest.fn()
-    const mockObject = {
-      getAllEvents: getAllEventsMock,
-      eventsByDate: eventsByDateMock,
-      events: dummyEvents,
-    }
+  test("Should call getAllEvents", () => {
+    render(
+      <Router>
+        <Start />
+      </Router>
+    )
 
-    populatePage(mockObject)
-
-    expect(getAllEventsMock.mock.calls.length).toBe(1)
-    expect(eventsByDateMock.mock.calls.length).toBe(1)
-    expect(eventsByDateMock).toHaveBeenCalledWith(dummyEvents)
+    expect(getAllEvents).toHaveBeenCalled()
   })
 })

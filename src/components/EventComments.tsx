@@ -26,6 +26,7 @@ const EventComments = ({ event }: any) => {
       setSubmitDisabled(true)
     } else {
       setComment(e.target.value)
+
       setSubmitDisabled(false)
     }
   }
@@ -49,7 +50,7 @@ const EventComments = ({ event }: any) => {
         <p>No comments</p>
       )}
 
-      <form className="input-form">
+      <div className="input-form">
         <textarea
           disabled={commentingDisabled}
           aria-label="comment"
@@ -66,7 +67,7 @@ const EventComments = ({ event }: any) => {
         >
           Add comment
         </button>
-      </form>
+      </div>
     </div>
   )
 }

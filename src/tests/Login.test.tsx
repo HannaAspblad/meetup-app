@@ -1,11 +1,11 @@
 import React from "react"
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { shallow } from "enzyme"
 import Login from "../views/Login"
 import { BrowserRouter as Router } from "react-router-dom"
 
-//mock functions
-import { submit } from "../views/LoginMock"
+import { logIn } from "../api/api"
+jest.mock("../api/api")
 
 describe("Login view", () => {
   test("Smoke test Login view", () => {
@@ -38,22 +38,19 @@ describe("Login view", () => {
 })
 
 describe("Login view API calls", () => {
-  test("Should call logIn function", () => {
+  test("Should call logIn function", async () => {
     render(
       <Router>
         <Login />
       </Router>
     )
 
-    const logInMock = jest.fn()
-    const mockObject = { logIn: logInMock }
-    const credentials = { name: "hanna", password: "password" }
-    submit(mockObject, credentials)
+    const button = screen.getByRole("button", { name: "submit" })
 
-    expect(logInMock).toHaveBeenCalledTimes(1)
-    expect(logInMock).toHaveBeenCalledWith({
-      name: "hanna",
-      password: "password",
+    fireEvent.click(button)
+
+    await waitFor(() => {
+      expect(logIn).toHaveBeenCalledTimes(1)
     })
   })
 
@@ -64,12 +61,8 @@ describe("Login view API calls", () => {
       </Router>
     )
 
-    const logInMock = jest.fn()
-
     const inputUserName = screen.getByRole("textbox", { name: "username" })
     const inputPassword = screen.getByLabelText("password")
-
-    const mockObject = { logIn: logInMock }
 
     fireEvent.change(inputUserName, { target: { value: "hanna" } })
     fireEvent.change(inputPassword, { target: { value: "password" } })
@@ -79,8 +72,8 @@ describe("Login view API calls", () => {
 
     const credentials = { username: username, password: password }
 
-    submit(mockObject, credentials)
-    expect(logInMock).toHaveBeenCalledWith({
+    logIn(credentials)
+    expect(logIn).toHaveBeenCalledWith({
       username: "hanna",
       password: "password",
     })

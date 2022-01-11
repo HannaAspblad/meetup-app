@@ -26,9 +26,6 @@ const Start = () => {
           events.map((event: any) => (
             <div key={event.id}>
               <EventCard event={event} />
-              {/* <Link to={`/event/${event.id}`}>
-                <p>Meetup details</p>
-              </Link> */}
             </div>
           ))
         ) : (

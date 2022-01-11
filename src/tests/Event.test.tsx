@@ -1,10 +1,11 @@
 import React from "react"
-
+import { render, waitFor } from "@testing-library/react"
 import Event from "../views/Event"
 import { shallow } from "enzyme"
+import { getEventById } from "../api/api"
+import { BrowserRouter as Router } from "react-router-dom"
 
-//Mock functions
-import { populatePage } from "../views/EventMock"
+jest.mock("../api/api")
 
 describe("Event view", () => {
   test("Smoke test Event view", () => {
@@ -25,13 +26,14 @@ describe("Event view", () => {
 })
 
 describe("Mock API calls", () => {
-  test("Should call getEventById", () => {
-    const getEventByIdMock = jest.fn()
-    const id = "123"
-    const mockObject = { getEventById: getEventByIdMock }
-
-    populatePage(mockObject, id)
-    expect(getEventByIdMock.mock.calls.length).toBe(1)
-    expect(getEventByIdMock).toHaveBeenCalledWith("123")
+  test("Should call getEventById", async () => {
+    render(
+      <Router>
+        <Event />
+      </Router>
+    )
+    await waitFor(() => {
+      expect(getEventById).toHaveBeenCalledTimes(1)
+    })
   })
 })

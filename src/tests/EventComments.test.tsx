@@ -2,10 +2,9 @@ import React from "react"
 import { fireEvent, render, screen } from "@testing-library/react"
 import { shallow } from "enzyme"
 import EventComments from "../components/EventComments"
+import { addComment } from "../api/api"
 
-//Mock functions
-import { submit } from "../components/EventCommentsMock"
-
+jest.mock("../api/api")
 const dummyEvent = {
   id: "event-abc",
   title: "Ugly cars lovers meetup",
@@ -64,13 +63,17 @@ describe("Event comments component", () => {
 describe("Mock API calls", () => {
   test("Should call addComments with correct text", () => {
     render(<EventComments event={dummyEvent} />)
-    const addCommentMock = jest.fn()
+
     const inputComment = screen.getByRole("textbox", { name: "comment" })
     fireEvent.change(inputComment, { target: { value: "amazing meetup" } })
     const comment = (inputComment as HTMLInputElement).value
-    const mockObject = { addComment: addCommentMock }
-    submit(mockObject, comment, "id")
-    expect(addCommentMock.mock.calls.length).toBe(1)
-    expect(addCommentMock).toHaveBeenCalledWith("amazing meetup", "id")
+
+    addComment(comment, dummyEvent.id, "user-id")
+
+    expect(addComment).toHaveBeenCalledWith(
+      "amazing meetup",
+      "event-abc",
+      "user-id"
+    )
   })
 })
