@@ -1,10 +1,8 @@
 import React from "react"
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import EventCard from "../components/EventCard"
 import { shallow } from "enzyme"
 import { BrowserRouter as Router } from "react-router-dom"
-import { signUpToEvent } from "../api/api"
-jest.mock("../api/api")
 
 const dummyEvent = {
   id: "event-abc",
@@ -59,19 +57,4 @@ test("Should render event information", () => {
   expect(
     screen.getByText(`${dummyEvent.time.toLocaleDateString()}`)
   ).toBeInTheDocument()
-})
-
-describe("Mock API calls", () => {
-  test("Should call signUpToEvent when pressing button", () => {
-    render(
-      <Router>
-        <EventCard />
-      </Router>
-    )
-    const button = screen.getByRole("button", { name: "booking" })
-
-    fireEvent.click(button)
-
-    expect(signUpToEvent).toHaveBeenCalledTimes(1)
-  })
 })
