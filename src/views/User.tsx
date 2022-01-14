@@ -13,7 +13,9 @@ const User = () => {
   const [events, setEvents] = useState(Array)
 
   useEffect(() => {
-    getUser()
+    try {
+      getUser()
+    } catch (err) {}
   }, [user])
 
   const getUser = async () => {

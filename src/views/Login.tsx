@@ -12,8 +12,8 @@ const Login = () => {
     const userId = await API.logIn({ username: username, password: password })
 
     if (userId) {
-      navigate(`/user/${userId}`)
       sessionStorage.setItem("User", userId)
+      navigate(`/user/${userId}`)
       setInvalid(false)
     } else {
       setInvalid(true)
@@ -24,7 +24,7 @@ const Login = () => {
     <div>
       <h2>Log in</h2>
       <div className="page-wrapper">
-        <form className="input-form">
+        <div className="input-form">
           <label htmlFor="input-username">Username:</label>
           <input
             name="input-username"
@@ -46,7 +46,7 @@ const Login = () => {
           <button className="form-button" aria-label="submit" onClick={submit}>
             Log in
           </button>
-        </form>
+        </div>
         {invalid ? <p className="error-message">Error</p> : ""}
       </div>
     </div>
