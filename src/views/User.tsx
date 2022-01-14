@@ -16,7 +16,7 @@ const User = () => {
     try {
       getUser()
     } catch (err) {}
-  }, [user])
+  }, [id, user])
 
   const getUser = async () => {
     const currentUser = await API.getUser(id)
