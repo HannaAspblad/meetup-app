@@ -34,7 +34,7 @@ const Navbar = () => {
           </Link>
 
           <Link to={`/user/${user}`} onClick={toggleMenu}>
-            Your page
+            Your page / Log in
           </Link>
         </div>
       ) : (
