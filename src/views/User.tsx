@@ -13,8 +13,10 @@ const User = () => {
   const [events, setEvents] = useState(Array)
 
   useEffect(() => {
-    getUser()
-  }, [user])
+    try {
+      getUser()
+    } catch (err) {}
+  }, [id, user])
 
   const getUser = async () => {
     const currentUser = await API.getUser(id)

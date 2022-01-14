@@ -39,7 +39,6 @@ const EventCard = ({ event }: any) => {
   }
 
   const signUp = async () => {
-    console.log("eventcard klick")
     setDisabled(true)
     await API.signUpToEvent(event.id, user)
   }
