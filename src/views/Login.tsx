@@ -10,6 +10,7 @@ const Login = () => {
 
   const submit = async () => {
     const userId = await API.logIn({ username: username, password: password })
+
     if (userId) {
       navigate(`/user/${userId}`)
       sessionStorage.setItem("User", userId)
